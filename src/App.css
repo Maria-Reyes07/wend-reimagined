@@ -58,6 +58,11 @@ text-align: center;
 .child {
   background: #F8FAFD;
   color: #424242;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -70,4 +75,56 @@ text-align: center;
 
 .child:not(:nth-last-child(-n + 5)) {
   border-bottom: 3px solid #D6D9DE;
+}
+
+.blackout-box{
+  border: 3px solid #1E1E1E;
+  background: #B2B2B2;
+}
+
+.blackout-right{
+  border-top: 3px solid #1E1E1E;
+  border-bottom: 3px solid #1E1E1E;
+  border-left: 3px solid #1E1E1E;
+  background: #B2B2B2;
+}
+
+.blackout-middle{
+  border-top: 3px solid #1E1E1E;
+  border-bottom: 3px solid #1E1E1E;
+  background: #B2B2B2;
+}
+
+.empty-circle{
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background: #E4E4E4;
+}
+
+.letter-circle{
+  width: 15px;
+  height: 15px;
+  border-radius: 20px;
+  background: #87C987;
+}
+
+.letter-popup{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 1px;
+  margin-top: 5px;
+  justify-content: center;
+}
+
+.letter-popup div{
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  color: #000;
+  font-family: Inter;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
