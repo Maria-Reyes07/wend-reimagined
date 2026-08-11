@@ -20,8 +20,8 @@ text-align: center;
 }
 
 .back-ground {
-  width: 364px;
-  height: 661px;
+  width: 394px;
+  height: 761px;
   border-radius: 6px;
   background: #F8FAFD;
   margin: 120px auto 0;
@@ -96,15 +96,16 @@ text-align: center;
 }
 
 .empty-circle{
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   border-radius: 20px;
   background: #E4E4E4;
 }
 
+
 .letter-circle{
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 20px;
   background: #87C987;
 }
@@ -114,10 +115,31 @@ text-align: center;
   grid-template-columns: auto auto auto auto;
   gap: 1px;
   margin-top: 5px;
+  margin-bottom: 15px;
   justify-content: center;
 }
 
 .letter-popup div{
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  color: #000;
+  font-family: Inter;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.letter-placeholder{
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  gap: 1px;
+  margin-top: 5px;
+  justify-content: left;
+}
+
+.letter-placeholder div{
   padding: 10px;
   font-size: 20px;
   text-align: center;
