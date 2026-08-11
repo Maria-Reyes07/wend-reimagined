@@ -1,0 +1,73 @@
+body {
+  background-color:  #F4F2EE;
+  margin: 0px;
+}
+
+.NavBar {
+  position: relative;
+  background: #FFF;
+  overflow: hidden;
+}
+
+.NavBar h1 {
+color: #000;
+font-family: Inter;
+font-size: 30px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-align: center;
+}
+
+.back-ground {
+  width: 364px;
+  height: 661px;
+  border-radius: 6px;
+  background: #F8FAFD;
+  margin: 120px auto 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.back-ground h1 {
+  color: #000;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0 0 20px 0;
+}
+
+.puzzle-box {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  padding: 5px;
+  gap: 0;
+  margin: 0 auto;
+  width: 330px;
+  height: 328px;
+  border: 3px solid #424242;
+  border-radius: 10px;
+}
+
+.child {
+  background: #F8FAFD;
+  color: #424242;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.child:not(:nth-child(5n)) {
+  border-right: 3px solid #D6D9DE;
+}
+
+.child:not(:nth-last-child(-n + 5)) {
+  border-bottom: 3px solid #D6D9DE;
+}
