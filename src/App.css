@@ -1,6 +1,10 @@
+
+
 body {
   background-color:  #F4F2EE;
   margin: 0px;
+  min-height: 100vh;
+  padding-bottom: 30px;
 }
 
 .NavBar {
@@ -21,7 +25,7 @@ text-align: center;
 
 .back-ground {
   width: 394px;
-  height: 761px;
+  height: 771px;
   border-radius: 6px;
   background: #F8FAFD;
   margin: 120px auto 0;
@@ -29,7 +33,7 @@ text-align: center;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .back-ground h1 {
@@ -82,7 +86,7 @@ text-align: center;
   background: #B2B2B2;
 }
 
-.blackout-right{
+.blackout-left{
   border-top: 3px solid #1E1E1E;
   border-bottom: 3px solid #1E1E1E;
   border-left: 3px solid #1E1E1E;
@@ -95,6 +99,30 @@ text-align: center;
   background: #B2B2B2;
 }
 
+.blackout-right{
+  border-top: 3px solid #1E1E1E;
+  border-bottom: 3px solid #1E1E1E;
+  border-right: 3px solid #1E1E1E;
+  background: #B2B2B2;
+}
+
+.blackout-single{
+  border: 3px solid #1E1E1E;
+  background: #B2B2B2;
+}
+
+.selected-cell {
+  border: 3px solid #1E1E1E;
+  border-radius: 50%;
+  background: #87C987;
+  color: #FFF;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .empty-circle{
   width: 10px;
   height: 10px;
@@ -103,16 +131,20 @@ text-align: center;
 }
 
 
-.letter-circle{
+.found-letter {
   width: 10px;
   height: 10px;
   border-radius: 20px;
   background: #87C987;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
 }
 
 .letter-popup{
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
   gap: 1px;
   margin-top: 5px;
   margin-bottom: 15px;
@@ -131,17 +163,15 @@ text-align: center;
   line-height: normal;
 }
 
-.letter-placeholder{
-  display: grid;
-  grid-template-columns: repeat(11, 1fr);
+.letter-placeholder {
+  display: flex;
+  justify-content: center;
   gap: 1px;
   margin-top: 5px;
-  justify-content: left;
 }
 
-.letter-placeholder div{
+.letter-placeholder > div {
   padding: 10px;
-  font-size: 20px;
   text-align: center;
   color: #000;
   font-family: Inter;
@@ -149,4 +179,81 @@ text-align: center;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+
+.correct {
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+.correct-circle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  left: 0;
+}
+
+.correct-check {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: 9px;
+  left: 9px;
+}
+
+.button{
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  justify-content: center;
+}
+
+.undo-button,
+.hint-button {
+  width: 190px;
+  height: 30px;
+  border-radius: 20px;
+  background: #F8FAFD;
+  border: 1px solid #1E1E1E;
+
+  color: #000;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.how-to,
+.control {
+  width: 330px;
+  height: 59px;
+  border-radius: 3px;
+  border: 1px solid #D9D9D9;
+  background: #F8FAFD;
+  color: #000;
+  font-family: Inter;
+  font-size: 15px;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin: 5px;
+}
+
+.chevron {
+  transition: transform 0.2s ease;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
 }
