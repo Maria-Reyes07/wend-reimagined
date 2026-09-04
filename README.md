@@ -95,10 +95,12 @@ npm run dev
 
 The frontend communicates with the Spring Boot backend running on port 8080.
 
-##Improvements
-- Have the undo button and Hint button work
-- Get the How To Play drop-down to actually work
-- Have the puzzles change daily
+## Future Improvements
+
+* Add functionality to the **Undo** button.
+* Add functionality to the **Hint** button.
+* Make the **How to Play** dropdown interactive and display gameplay instructions.
+
 
 ## Screenshots
 <img width="733" height="796" alt="image" src="https://github.com/user-attachments/assets/56a952bd-7915-4652-9a3f-e317ec640f6b" />
