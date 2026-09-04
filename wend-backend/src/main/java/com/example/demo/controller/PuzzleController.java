@@ -14,7 +14,7 @@ import com.example.demo.repository.PuzzleRepository;
 @RestController
 public class PuzzleController {
 
-    private PuzzleRepository puzzleRepository;
+    private final PuzzleRepository puzzleRepository;
 
     public PuzzleController(PuzzleRepository puzzleRepository) {
         this.puzzleRepository = puzzleRepository;

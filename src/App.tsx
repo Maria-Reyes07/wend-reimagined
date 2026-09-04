@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react';
 import React  from 'react';
 import './App.css';
 
-const checkCircle =
-  'https://www.figma.com/api/mcp/asset/64de5062-3345-4948-9d19-1718c595269a.svg';
-
-const checkIcon =
-  'https://www.figma.com/api/mcp/asset/5ea4da76-2d81-4ed3-bfab-14621579ae0c.svg';
+const checkCircle = '/Correct.svg';
+// const checkIcon =
+//   'https://www.figma.com/api/mcp/asset/5ea4da76-2d81-4ed3-bfab-14621579ae0c.svg';
 
 type Word = {
   id: number;
@@ -14,11 +12,20 @@ type Word = {
   path: number[];
 };
 
+const wordColors = [
+  '#E8A87C',
+  '#85DCB0',
+  '#8DA9E8',
+  '#C38D9E',
+  '#E8D27C',
+  '#9B8DE3',
+];
+
 function Correct() {
   return (
     <div className="correct">
       <img className="correct-circle" src={checkCircle} alt="" />
-      <img className="correct-check" src={checkIcon} alt="" />
+      {/* <img className="correct-check" src={checkIcon} alt="" /> */}
     </div>
   );
 }
@@ -32,25 +39,33 @@ function App() {
   const [foundWords, setFoundWords] = useState<number[]>([]);
   const [foundCells, setFoundCells] = useState<number[]>([]);
 
-  useEffect(() => {
-    fetch('http://localhost:8080/api/themes')
-      .then(response => response.json())
-      .then(data => {
-        setTheme(data[0].name);
-      })
-      .catch(error => {
-        console.error('Error fetching theme:', error);
-      });
+  const getCellColor = (cellIndex: number) => {
+  const foundWord = words.find(
+    word => foundWords.includes(word.id) && word.path.includes(cellIndex)
+  );
 
-    fetch('http://localhost:8080/api/puzzles')
+  if (!foundWord) {
+    return undefined;
+  }
+
+  const colorIndex = foundWords.indexOf(foundWord.id);
+
+  return wordColors[colorIndex % wordColors.length];
+};
+
+  useEffect(() => {
+
+    fetch('http://localhost:8080/api/puzzles/daily')
       .then(response => response.json())
       .then(data => {
-        const puzzleGrid = data[0].grid
+        const puzzleGrid = data.grid
           .replaceAll('/', '')
           .split('');
 
         setPuzzle(puzzleGrid);
-        setWords(data[0].words);
+        setWords(data.words);
+        setTheme(data.theme.name);
+
       })
       .catch(error => {
         console.error('Error fetching puzzle:', error);
@@ -86,20 +101,16 @@ const checkForMatch = () => {
     JSON.stringify(word.path) === JSON.stringify(selectedPath)
   );
 
-  if (matchedWord) {
-    console.log('MATCH!', matchedWord.text);
+if (matchedWord) {
+  console.log('MATCH!', matchedWord.text);
 
+  if (!foundWords.includes(matchedWord.id)) {
     setFoundWords([...foundWords, matchedWord.id]);
-
-    // Keep these cells highlighted
     setFoundCells([...foundCells, ...matchedWord.path]);
-
-    // Clear the temporary selection
-    setSelectedCells([]);
-  } else {
-    console.log('No match');
-    setSelectedCells([]);
   }
+
+  setSelectedCells([]);
+}
 };
 
 const sortedWords = [...words].sort(
@@ -144,6 +155,9 @@ const sortedWords = [...words].sort(
                       ? 'selected-cell'
                       : ''
                   }
+                  style={{
+                    backgroundColor: getCellColor(index)
+                  }}
                 >
                   {letter}
                 </div>
@@ -215,11 +229,11 @@ const sortedWords = [...words].sort(
             </svg>
           </div>
        {/* <!-- Keyboard Controls --> */}
-        <div className="control">Keyboard Controls
+        {/* <div className="control">Keyboard Controls
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path fillRule="evenodd" clipRule="evenodd" d="M1.55277 6.77638C1.67627 6.52939 1.9766 6.42928 2.22359 6.55277L7.99999 9.44097L13.7764 6.55277C14.0234 6.42928 14.3237 6.52939 14.4472 6.77638C14.5707 7.02337 14.4706 7.32371 14.2236 7.4472L8.22359 10.4472C8.08283 10.5176 7.91714 10.5176 7.77638 10.4472L1.77638 7.4472C1.52939 7.32371 1.42928 7.02337 1.55277 6.77638Z" fill="black"/>
           </svg>
-        </div>
+        </div> */}
       </div>
     </div>
   );

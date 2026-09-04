@@ -1,28 +1,35 @@
-import com.example.demo.entity.DailyPuzzle;
+package com.example.demo.controller;
+
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Random;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Puzzle;
-import com.example.demo.repository.DailyPuzzleRepository;
+import com.example.demo.repository.PuzzleRepository;
 
 @RestController
 public class DailyPuzzleController {
 
-    private DailyPuzzleRepository dailyPuzzleRepository;
+    private final PuzzleRepository puzzleRepository;
 
-    public DailyPuzzleController(DailyPuzzleRepository dailyPuzzleRepository) {
-        this.dailyPuzzleRepository = dailyPuzzleRepository;
+    public DailyPuzzleController(PuzzleRepository puzzleRepository) {
+        this.puzzleRepository = puzzleRepository;
     }
 
-    @GetMapping("/api/puzzles/today")
-    public Puzzle getTodaysPuzzle() {
+    @GetMapping("/api/puzzles/daily")
+    public Puzzle getDailyPuzzle() {
+
+        List<Puzzle> puzzles = puzzleRepository.findAll();
 
         LocalDate today = LocalDate.now();
 
-        DailyPuzzle dailyPuzzle = dailyPuzzleRepository.findByDate(today).orElseThrow();
+        Random random = new Random(today.toEpochDay());
 
-        return dailyPuzzle.getPuzzle();
+        int index = random.nextInt(puzzles.size());
+
+        return puzzles.get(index);
     }
 }
